@@ -1,5 +1,6 @@
 package com.application.gestion.Employee.service;
 
+import com.application.gestion.Employee.exception.EmployeeNotFoundException;
 import com.application.gestion.Employee.model.Employee;
 import com.application.gestion.Employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,17 @@ public class EmployeeService {
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
     }
+
+    public void updateEmployeeImage(Long employeeId, String base64Image) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with ID: " + employeeId));
+
+        employee.setPhoto(base64Image);
+
+        employeeRepository.save(employee);
+    }
+
+
+
 
 }

@@ -1,0 +1,32 @@
+.text {
+  margin-left: 20%
+}
+
+.container {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:50%
+  height: 90vh;
+  border : solid 2px black;
+}
+
+.info {
+  width: 25%;
+  padding: 20px;
+}
+
+.info h2 {
+  margin-bottom: 10px;
+}
+
+.image {
+  width: 25%;
+  display: flex;
+}
+
+.image img {
+  max-width: 100%;
+  max-height: 100%;
+}

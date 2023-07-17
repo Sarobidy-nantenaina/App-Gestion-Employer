@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche Employé</title>
+</head>
+<body>
+
+<nav>
+    <a href="/employees/new">Ajouter</a>
+    <a href="/employees">Liste</a>
+</nav>
+
+<h1 class="text" >Fiche Employé</h1>
+<div class="container">
+    <div class="info">
+        <h2>Nom : <span th:text="${employee.name}"></span></h2>
+        <h2>Prénom : <span th:text="${employee.firstname}"></span></h2>
+        <h2>Date de naissance : <span th:text="${employee.birthdate}"></span></h2>
+        <h2>Matricule : <span th:text="${employee.matricule}"></span></h2>
+    </div>
+    <div class="image">
+        <div th:if="${employee.photo != null and employee.photo.length > 0}">
+            <img th:src="@{'data:image/png;base64,' + ${employee.photo}}" alt="Image d'identité de l'employé"/>
+        </div>
+        <div th:unless="${employee.photo != null and employee.photo.length > 0}">
+            <p>Aucune image</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<link th:href="@{/styles/fiche.css}" rel="stylesheet" />
+</html>

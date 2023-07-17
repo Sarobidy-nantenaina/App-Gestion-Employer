@@ -5,8 +5,14 @@
     <title>Modifier Employé</title>
 </head>
 <body>
+
+<nav>
+    <a href="/employees/new">Ajouter</a>
+    <a href="/employees">Liste</a>
+</nav>
+
 <h1>Modifier Employé</h1>
-<form th:action="@{/employees/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+<form th:action="@{/employees/{id}/update(id=${employee.id})}" th:object="${employee}" method="post" enctype="multipart/form-data">
     <label for="name">Nom :</label>
     <input type="text" id="name" name="name" th:value="*{name}">
 
@@ -16,7 +22,15 @@
     <label for="birthdate">Date de naissance :</label>
     <input type="date" id="birthdate" name="birthdate" th:value="*{birthdate}">
 
+    <!-- Champ de téléchargement de fichier -->
+    <label for="image">Changer de photo :</label>
+    <input type="file" id="image" name="image" accept="image/*" required >
+
+    <<img id="previewImage" th:src="@{'data:image/png;base64,' + ${employee.photo}}" alt="Aperçu de l'image"/>
+
     <button type="submit">Modifier</button>
 </form>
 </body>
+<link th:href="@{/styles/edit.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/action.js}"></script>
 </html>
