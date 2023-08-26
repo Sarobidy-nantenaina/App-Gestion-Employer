@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des entreprises</title>
+    <link th:href="@{/styles/list_entreprise.css}" rel="stylesheet" />
+</head>
+<body>
+
+<th:block th:insert="~{fragments/navbar :: navbar}"></th:block>
+
+<h1>Liste des entreprises</h1>
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Slogan</th>
+        <th>Adresse</th>
+        <th>Email de contact</th>
+        <th>Téléphones</th>
+        <th>NIF</th>
+        <th>STAT</th>
+        <th>RCS</th>
+        <th>Logo</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="entreprise : ${entreprises}">
+        <td th:text="${entreprise.nom}"></td>
+        <td th:text="${entreprise.description}"></td>
+        <td th:text="${entreprise.slogan}"></td>
+        <td th:text="${entreprise.adresse}"></td>
+        <td th:text="${entreprise.emailContact}"></td>
+        <td th:text="${entreprise.telephones}"></td>
+        <td th:text="${entreprise.nif}"></td>
+        <td th:text="${entreprise.stat}"></td>
+        <td th:text="${entreprise.rcs}"></td>
+        <td>
+            <img id="logo" th:src="@{'data:image/png;base64,' + ${entreprise.logo}}" alt="Logo de l'entreprise">
+        </td>
+        <td>
+            <a th:href="@{/entreprises/{id}/edit(id=${entreprise.id})}">Modifier</a>
+            <a th:href="@{/entreprises/{id}/delete(id=${entreprise.id})}">Supprimer</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

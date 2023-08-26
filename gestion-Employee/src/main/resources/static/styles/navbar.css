@@ -1,0 +1,50 @@
+/* navbar.css */
+
+/* Appliquer un style de base au navbar */
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Appliquer un style aux liens dans le navbar */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Ajouter un style au logo de l'entreprise */
+nav img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Ajouter un style au texte du nom de l'entreprise */
+nav span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Ajouter un style aux liens du navbar au survol de la souris */
+nav a:hover {
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Réduire la taille du navbar lorsqu'il est affiché sur un petit écran */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+  nav a {
+    margin: 5px 0;
+  }
+}

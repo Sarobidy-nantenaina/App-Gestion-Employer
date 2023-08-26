@@ -1,32 +1,96 @@
+/* Styles pour le titre */
 .text {
-  margin-left: 20%
+  text-align: center;
+  margin-top: 30px;
+  font-size: 28px;
 }
 
+/* Styles pour le conteneur principal */
 .container {
-  margin-top: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:50%
-  height: 90vh;
-  border : solid 2px black;
+  margin-top: 30px;
+  margin-left: 12%;
+  max-width: 75%;
 }
 
-.info {
-  width: 25%;
+/* Styles pour le cadre */
+.cadre {
+  background-color: #f8f8f8;
+  border: 2px solid black;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  display: grid; /* Mise en page en grille */
+  grid-template-columns: 60% 30%; /* Deux colonnes pour les informations et l'image */
+  gap: 20px; /* Espacement entre les colonnes */
+  position: relative; /* Position relative pour les informations de l'entreprise */
+}
+
+/* Styles pour les informations */
+.info {
+  font-size: 18px;
 }
 
 .info h2 {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
+.info ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info li {
+  margin-bottom: 5px;
+}
+
+/* Styles pour l'image */
 .image {
-  width: 25%;
   display: flex;
+  justify-content: flex-start; /* Aligner l'image ÃƒÆ’Ã‚Â  gauche */
+  align-items: flex-start;
+  margin-left: 7%;
+  margin-top: 5%;
 }
 
 .image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 170px;
+  height: 180px; /* Ajuster la hauteur de l'image */
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Styles pour les informations de l'entreprise en bas de page */
+.info_entreprise {
+  position: relative;
+  margin-top: 60%;
+  padding-top: 30px;
+  border-top: 1px solid black; /* Ligne de sÃƒÂ©paration */
+  display: flex;
+  margin-left: -205%;
+}
+
+.img-entreprise {
+  flex: 1;
+  text-align: center;
+  margin-right: 10%;
+}
+
+.img-entreprise img {
+  width: 300px; /* Ajuster la taille du logo */
+  height: 200px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inform1-entreprise,
+.inform2-entreprise {
+  flex: 2;
+  padding-right: 15%;
+}
+
+/* Style pour les icÃƒÂ´nes */
+.icon {
+  margin-right: 5px;
+}
+

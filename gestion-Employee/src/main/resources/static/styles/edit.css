@@ -1,64 +1,87 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-}
-
-nav {
-  background-color: #333;
-  padding: 10px;
-}
-
-nav a {
-  margin-right: 10px;
-  text-decoration: none;
-  color: #fff;
+  background: linear-gradient(45deg, #FC466B, #3F5EFB);
+  font-family: arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
-  margin-top: 20px;
-  color: #333;
+  margin-top: 2%;
+  color: white;
+  font-weight: 500;
+  opacity: .7;
+  font-size: 1.4rem;
+  margin-bottom: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
 }
 
 form {
-  max-width: 500px;
-  margin: 0 auto;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background: rgba(255, 255, 255, .3);
+  padding: 3rem;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, .3);
+  border-top: 1px solid rgba(255, 255, 255, .3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
 }
 
-label {
-  display: block;
-  margin-bottom: 10px;
-  color: #333;
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  color: #555;
 }
 
 input[type="text"],
+input[type="email"],
 input[type="date"],
-input[type="file"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-img#previewImage {
-  max-width: 200px;
-  margin-top: 10px;
-}
-
-button[type="submit"] {
-  display: block;
+input[type="number"],
+select {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #333;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
+input[type="radio"] {
+  margin-right: 5px;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #555;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+input[type="radio"]:checked {
+  background-color: #555;
+}
+
+#previewImage {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #ff6b6b, #c74c4c);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: linear-gradient(45deg, #ff4f4f, #b93e3e);
 }

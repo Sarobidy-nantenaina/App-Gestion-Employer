@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Fiche Employé</title>
+    <link th:href="@{'http://localhost:8080/styles/fiche.css'}" rel="stylesheet"/>
 </head>
 <body>
 
-<th:block th:insert="~{fragments/navbar :: navbar}"></th:block>
-
-<h1 class="text">Fiche Employé</h1>
 <div class="container">
     <div class="cadre" >
         <div class="image">
@@ -54,8 +52,5 @@
     </div>
 </div>
 
-<a th:href="@{'http://localhost:8080/employees/' + ${employee.id} + '/generate-pdf'}" target="_blank">Générer PDF</a>
-
 </body>
-<link th:href="@{'http://localhost:8080/styles/fiche.css'}" rel="stylesheet"/>
 </html>

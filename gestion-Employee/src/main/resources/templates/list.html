@@ -6,33 +6,104 @@
 </head>
 <body>
 
-<nav>
-    <a href="/employees/new">Ajouter</a>
-    <a href="/employees">Liste</a>
-</nav>
+<th:block th:insert="~{fragments/navbar :: navbar}"></th:block>
 
 <h1>Liste des Employés</h1>
-<table>
+
+<!-- Formulaire de filtrage -->
+<form id="filterForm" action="/employees/filter" method="get">
+    <label for="filterBy">Filter by:</label>
+    <select id="filterBy" name="filterBy">
+        <option value=""></option>
+        <option value="name">Nom</option>
+        <option value="firstname">Prénom</option>
+        <option value="sexe">Sexe</option>
+        <option value="fonction">Fonction</option>
+        <option value="telephones">telephone</option>
+        <option value="dateEmbauche">Date d'embauche</option>
+        <option value="dateDepart">Date de départ</option>
+    </select>
+
+    <!-- Champ de recherche -->
+    <label for="keyword">Keyword:</label>
+    <input type="text" id="keyword" name="keyword" />
+
+    <label id="order-label" for="orderBy">Order:</label>
+    <select id="orderBy" name="orderBy">
+        <option value=""></option>
+        <option value="asc">Asc</option>
+        <option value="desc">Desc</option>
+    </select>
+
+    <label id="code-pays" for="phoneCountryCode" >code pays:</label>
+    <select id="phoneCountryCode">
+        <option value=""></option>
+        <option value="261">+261</option>
+        <option value="33">+33</option>
+        <option value="1">+1</option>
+        <option value="44">+44</option>
+    </select>
+
+    <button type="submit">Filtrer</button>
+</form>
+
+
+<table id="employeeTable">
     <tr>
         <th>Nom</th>
         <th>Prénom</th>
-        <th>Date Naissance</th>
-        <th>Matricule</th>
+        <th>Date de naissance</th>
+        <th>Sexe</th>
+        <th>Téléphones</th>
+        <th>Adresse</th>
+        <th>Email Personnel</th>
+        <th>Email Professionnel</th>
+        <th>CIN Numéro</th>
+        <th>Date de délivrance du CIN</th>
+        <th>Lieu de délivrance du CIN</th>
+        <th>Fonction</th>
+        <th>Nombre d'enfants</th>
+        <th>Date d'embauche</th>
+        <th>Date de départ</th>
+        <th>Catégorie Socio-Professionnelle</th>
+        <th>Numéro CNAPS</th>
+        <th>Salaire brute</th>
         <th>Actions</th>
     </tr>
     <tr th:each="employee : ${employees}">
         <td th:text="${employee.name}"></td>
         <td th:text="${employee.firstname}"></td>
         <td th:text="${employee.birthdate}"></td>
-        <td th:text="${employee.matricule}"></td>
+        <td th:text="${employee.sexe}"></td>
         <td>
+            <ul>
+                <li th:each="phoneNumber : ${#strings.arraySplit(employee.telephones, ',')}" th:text="${phoneNumber}"></li>
+            </ul>
+        </td>
+        <td th:text="${employee.adresse}"></td>
+        <td th:text="${employee.emailPerso}"></td>
+        <td th:text="${employee.emailPro}"></td>
+        <td th:text="${employee.cinNumero}"></td>
+        <td th:text="${employee.cinDateDelivrance}"></td>
+        <td th:text="${employee.cinLieuDelivrance}"></td>
+        <td th:text="${employee.fonction}"></td>
+        <td th:text="${employee.nombreEnfants}"></td>
+        <td th:text="${employee.dateEmbauche}"></td>
+        <td th:text="${employee.dateDepart}"></td>
+        <td th:text="${employee.categorieSocioPro}"></td>
+        <td th:text="${employee.numeroCnaps}"></td>
+        <td th:text="${employee.salaireBrut} + 'Ar'"></td>
+        <td class="actions-column" >
             <a class="button-link" th:href="@{/employees/{id}/edit(id=*{employee.id})}">Modifier</a>
             <a class="button-link" th:href="@{/employees/{id}/delete(id=*{employee.id})}">Supprimer</a>
-            <a class="button-link" th:href="@{/employees/{id}/fiche(id=*{employee.id})}">Fiche Employé</a>
+            <a class="button-link" th:href="@{/employees/{id}/fiche(id=*{employee.id})}">Fiche</a>
         </td>
     </tr>
 </table>
 
+<button id="exportCsvButton">Exporter en CSV</button>
 </body>
 <link th:href="@{/styles/list.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/export_csv.js}"></script>
+<script type="text/javascript" th:src="@{/js/gestionFiltre.js}"></script>
 </html>

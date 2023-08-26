@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion employer App</title>
+    <link rel="stylesheet" th:href="@{/styles/main.css}" />
+</head>
+<body>
+
+<nav>
+    <!-- Utilisation de la méthode du service pour récupérer l'entreprise ayant l'id égal à 1 -->
+    <div th:if="${entreprise1}">
+        <img id="logo_nav" th:src="@{'data:image/png;base64,' + ${entreprise1.logo}}">
+        <span th:text="${entreprise1.nom}"></span>
+    </div>
+    <div>
+        <a href="/">Accueil</a>
+        <a href="/employees/new">Ajouter Employé</a>
+        <a href="/employees">Liste des Employés</a>
+        <a href="/entreprises/new">Ajouter Entreprise</a>
+        <a href="/entreprises">Liste des Entreprises</a>
+    </div>
+</nav>
+
+<h1 class="lien">Page d'accueil</h1>
+</body>
+</html>

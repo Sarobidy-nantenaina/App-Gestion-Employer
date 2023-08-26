@@ -1,38 +1,142 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Ajouter Employé</title>
 </head>
 <body>
 
-<nav>
-    <a href="/employees/new">Ajouter</a>
-    <a href="/employees">Liste</a>
-</nav>
+<th:block th:insert="~{fragments/navbar :: navbar}"></th:block>
 
 <div class="container">
-   <form id="employeeForm" th:action="@{/employees}" th:object="${employee}" method="post" enctype="multipart/form-data">
-      <p>Ajouter Employé</p>
-       <label for="name">Nom :</label>
-      <input type="text" id="name" th:field="*{name}" placeholder="votre nom">
+    <form id="employeeForm" th:action="@{/employees}" th:object="${employee}" method="post" enctype="multipart/form-data">
+        <h2 class="glass-title">Ajouter Employé</h2>
+        <div class="litle-container" >
+            <div class="colomn1" >
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="Votre nom">
+                </div>
 
-      <label for="firstname">Prénom :</label>
-      <input type="text" id="firstname" th:field="*{firstname}" placeholder="votre Prénom ">
+                <div class="form-group">
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" id="firstname" th:field="*{firstname}" placeholder="Votre Prénom">
+                </div>
 
-      <label for="birthdate">Date de naissance :</label>
-      <input type="date" id="birthdate" th:field="*{birthdate}" placeholder="Date de naissance" />
+                <div class="form-group">
+                    <label>Sexe :</label>
+                    <div class="radio-group">
+                        <input type="radio" id="homme" th:field="*{sexe}" value="H">Homme</input>
+                        <input type="radio" id="femme" th:field="*{sexe}" value="F">Femme</input>
+                    </div>
+                </div>
 
-    <!-- Champ de téléchargement de fichier -->
-      <label for="image">Photo :</label>
-      <input type="file" id="image" name="image" accept="image/*" th:onchange="previewImage(event);" required>
+                <div class="form-group">
+                    <label for="birthdate">Date de naissance :</label>
+                    <input type="date" id="birthdate" th:field="*{birthdate}" placeholder="Votre date de naissance">
+                </div>
 
-      <img id="previewImage" src="" alt="Aperçu de l'image"/>
+                <div class="form-group">
+                    <label for="address">Adresse :</label>
+                    <input type="text" id="address" th:field="*{adresse}" placeholder="Votre adresse">
+                </div>
 
-      <button type="submit">Ajouter</button>
-   </form>
+                <div class="form-group">
+                    <label>Téléphone :</label>
+                    <div class="phone-input">
+                        <select id="phoneCountryCode">
+                            <option value="261">+261 (Madagascar)</option>
+                            <option value="33">+33 (France)</option>
+                            <option value="1">+1 (USA)</option>
+                            <option value="44">+44 (UK)</option>
+                            <!-- Ajoute d'autres options de codes pays ici -->
+                        </select>
+                        <input type="text" id="telephone" th:field="*{telephones}" placeholder="Numéro de téléphone (séparés par des virgules)">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="column2" >
+                <div class="form-group">
+                    <label for="emailPerso">Email personnel :</label>
+                    <input type="email" id="emailPerso" th:field="*{emailPerso}" placeholder="Votre email personnel">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailPro">Email professionnel :</label>
+                    <input type="email" id="emailPro" th:field="*{emailPro}" placeholder="Votre email professionnel">
+                </div>
+                <div class="form-group">
+                    <label for="cinNumero">CIN - Numéro :</label>
+                    <input type="text" id="cinNumero" th:field="*{cinNumero}" placeholder="Numéro de CIN">
+                </div>
+                <div class="form-group">
+                    <label for="cinDateDelivrance">CIN - Date de délivrance :</label>
+                    <input type="date" id="cinDateDelivrance" th:field="*{cinDateDelivrance}" placeholder="Date de délivrance de la CIN">
+                </div>
+
+                <div class="form-group">
+                    <label for="cinLieuDelivrance">CIN - Lieu de délivrance :</label>
+                    <input type="text" id="cinLieuDelivrance" th:field="*{cinLieuDelivrance}" placeholder="Lieu de délivrance de la CIN">
+                </div>
+
+                <div class="form-group">
+                    <label for="fonction">Fonction :</label>
+                    <input type="text" id="fonction" th:field="*{fonction}" placeholder="Votre fonction">
+                </div>
+            </div>
+            <div class="colomn3" >
+                <div class="form-group">
+                    <label for="nombreEnfants">Nombre d'enfants à charge :</label>
+                    <input type="number" id="nombreEnfants" th:field="*{nombreEnfants}" placeholder="Nombre d'enfants à charge">
+                </div>
+
+                <div class="form-group">
+                    <label for="dateEmbauche">Date d'embauche :</label>
+                    <input type="date" id="dateEmbauche" th:field="*{dateEmbauche}" placeholder="Date d'embauche">
+                </div>
+
+                <div class="form-group">
+                    <label for="dateDepart">Date de départ :</label>
+                    <input type="date" id="dateDepart" th:field="*{dateDepart}" placeholder="Date de départ">
+                </div>
+
+                <div class="form-group">
+                    <label for="categorieSocioPro">Catégorie socio-professionnelle :</label>
+                    <select id="categorieSocioPro" th:field="*{categorieSocioPro}">
+                        <option value="cadre">Cadre</option>
+                        <option value="employe">Employé</option>
+                        <option value="ouvrier">Ouvrier</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="numeroCnaps">Numéro CNAPS :</label>
+                    <input type="text" id="numeroCnaps" th:field="*{numeroCnaps}" placeholder="Numéro CNAPS">
+                </div>
+
+                <div class="form-group">
+                    <label for="salaire">Salaire brute :</label>
+                    <input type="text" id="salaire" th:field="*{salaireBrut}" placeholder="Salaire brute" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Photo :</label>
+                    <input type="file" id="image" name="image" accept="image/*" th:onchange="previewImage(event);" class="glass-input" >
+                    <img id="previewImage" src="" alt="Aperçu de l'image" class="glass-image" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="glass-button">Ajouter</button>
+        </div>
+    </form>
 </div>
+
 </body>
 <link th:href="@{/styles/add.css}" rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/action.js}"></script>
+<script type="text/javascript" th:src="@{/js/phone.js}"></script>
 </html>
