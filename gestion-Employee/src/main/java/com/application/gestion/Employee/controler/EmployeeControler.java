@@ -5,30 +5,24 @@ import com.application.gestion.Employee.model.Entreprise;
 import com.application.gestion.Employee.model.Telephone;
 import com.application.gestion.Employee.service.EmployeeService;
 import com.application.gestion.Employee.service.EntrepriseService;
-import com.application.gestion.Employee.service.PdfService;
 import com.application.gestion.Employee.service.TelephoneService;
-import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Base64;
 import java.util.List;
-import java.util.Locale;
-import org.thymeleaf.context.Context;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
-import java.util.Base64;
-import org.thymeleaf.spring6.SpringTemplateEngine;
-import org.xhtmlrenderer.pdf.ITextRenderer;
 
 @Controller
 @AllArgsConstructor
@@ -37,7 +31,6 @@ public class EmployeeControler {
     private final EmployeeService employeeService;
     private final TelephoneService telephoneService;
     private final EntrepriseService entrepriseService;
-    private final PdfService pdfService;
 
   @GetMapping("/employees")
     public String getAllEmployees(Model model) {
@@ -148,24 +141,7 @@ public class EmployeeControler {
     return "list";
   }
 
-  @GetMapping("employees/{id}/generate-pdf")
-  public ResponseEntity<byte[]> generatePdf(@PathVariable Long id) {
-    try {
-      Employee employee = employeeService.getEmployeeById(id);
-      List<Entreprise> entreprises = entrepriseService.getAllEntreprises();
 
-      byte[] pdfContent = pdfService.generatePdf(employee, entreprises);
-
-      HttpHeaders headers = new HttpHeaders();
-      headers.setContentType(MediaType.APPLICATION_PDF);
-      headers.setContentDispositionFormData("inline", "fiche_employe.pdf");
-
-      return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
-    } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-          .body("An error occurred while generating the PDF.".getBytes());
-    }
-  }
 
 
 
@@ -294,34 +270,6 @@ public class EmployeeControler {
         model.addAttribute("entreprises", entreprises);
         return "fiche";
     }
-
-    @GetMapping("/employees/{id}/uploadImage")
-    public String uploadImage(@PathVariable("id") Long id, @RequestParam("image") MultipartFile imageFile, Model model) {
-        if (!imageFile.isEmpty()) {
-            try {
-                byte[] imageBytes = imageFile.getBytes();
-
-                // Convertir les données de l'image en Base64
-                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-
-                // Mettre à jour le champ correspondant dans l'entité Employee
-                employeeService.updateEmployeeImage(id, base64Image);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-                // Afficher un message d'erreur à l'utilisateur
-                model.addAttribute("errorMessage", "Une erreur s'est produite lors du téléchargement de l'image. Veuillez réessayer.");
-
-                // Rediriger vers la vue appropriée pour afficher le message d'erreur
-                return "fiche";
-            }
-        }
-
-        // Rediriger vers la page de détails de l'employé
-        return "redirect:/employees/" + id + "/list";
-    }
-
 
 
 
