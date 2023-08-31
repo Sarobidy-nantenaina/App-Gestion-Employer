@@ -1,16 +1,4 @@
-/* Styles pour le titre */
-.text {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 28px;
-}
 
-/* Styles pour le conteneur principal */
-.container {
-  margin-top: 30px;
-  margin-left: 12%;
-  max-width: 100%;
-}
 
 /* Styles pour le cadre */
 .cadre {
@@ -19,15 +7,16 @@
   border-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  display: grid; /* Mise en page en grille */
-  grid-template-columns: 50% 40%; /* Réduire la largeur de la première colonne */
-  gap: 20px; /* Espacement entre les colonnes */
   position: relative; /* Position relative pour les informations de l'entreprise */
 }
 
+.photo {
+  margin-right: 10%;
+}
 
 /* Styles pour les informations */
 .info {
+  padding-left: 10%;
   font-size: 11px;
 }
 
@@ -86,6 +75,11 @@
   height: 150px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entr_info {
+   padding-left: 10%
+   display: flex;
 }
 
 .inform1-entreprise,

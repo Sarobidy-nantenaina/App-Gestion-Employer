@@ -8,45 +8,42 @@
 <body>
 
 <div class="container">
-    <div class="cadre" >
+    <div class="cadre">
         <div class="image">
-            <div th:if="${employee.photo != null and employee.photo.length > 0}">
-                <img th:src="@{'data:image/png;base64,' + ${employee.photo}}" alt="Image d'identité de l'employé"/>
+            <div class="photo">
+                <div th:if="${employee.photo != null and employee.photo.length > 0}">
+                    <img th:src="@{'data:image/png;base64,' + ${employee.photo}}" alt="Image d'identité de l'employé"/>
+                </div>
             </div>
-            <div th:unless="${employee.photo != null and employee.photo.length > 0}">
-                <p>Aucune image choisie <br>Veuillez insérer votre image</p>
-                <a th:href="@{/employees/{id}/edit(id=*{employee.id})}">Insérer une Image</a>
+            <div class="info">
+                <h2>Matricule : <span th:text="${employee.matricule}"></span></h2>
+                <h2>Nom : <span th:text="${employee.name}"></span></h2>
+                <h2>Prénom : <span th:text="${employee.firstname}"></span></h2>
+                <h2>Âge : <span th:text="${T(java.time.LocalDate).now().getYear() - employee.birthdate.getYear()} + (${T(java.time.LocalDate).now().getYear() - employee.birthdate.getYear()} &lt; 2 ? ' an' : ' ans')"></span></h2>
+                <h2>Date d'embauche : <span th:text="${employee.dateEmbauche}"></span></h2>
+                <h2>Date de départ : <span th:text="${employee.dateDepart}"></span></h2>
+                <h2>Numéro CNAPS : <span th:text="${employee.numeroCnaps}"></span></h2>
             </div>
         </div>
-        <div class="info">
-            <h2>Matricule : <span th:text="${employee.matricule}"></span></h2>
-            <h2>Nom : <span th:text="${employee.name}"></span></h2>
-            <h2>Prénom : <span th:text="${employee.firstname}"></span></h2>
-            <h2>Âge : <span th:text="${T(java.time.LocalDate).now().getYear() - employee.birthdate.getYear()} + (${T(java.time.LocalDate).now().getYear() - employee.birthdate.getYear()} &lt; 2 ? ' an' : ' ans')"></span></h2>
-            <h2>Date d'embauche : <span th:text="${employee.dateEmbauche}"></span></h2>
-            <h2>Date de départ : <span th:text="${employee.dateDepart}"></span></h2>
-            <h2>Numéro CNAPS : <span th:text="${employee.numeroCnaps}"></span></h2>
-
-        </div>
-
-        <div>
-            <p>Information sur le salaire</p>
-            <h3>Salaire brute : <span th:text="${employee.salaireBrut} + ' Ar'"></span></h3>
-        </div>
-
-        <div class="info_entreprise" th:each="entreprise : ${entreprises}">
+            <div class="salaire">
+                <p>Information sur le salaire</p>
+                <h3>Salaire brute : <span th:text="${employee.salaireBrut} + ' Ar'"></span></h3>
+            </div>
+            <div class="info_entreprise" th:each="entreprise : ${entreprises}">
             <div class="img-entreprise" >
                 <img id="logo" th:src="@{'data:image/png;base64,' + ${entreprise.logo}}" alt="Logo de l'entreprise"/>
             </div>
-            <div class="inform1-entreprise">
-                <h2>Nom de l'entreprise : <span th:text="${entreprise.nom}"></span></h2>
-                <h2>Nif : <span th:text="${entreprise.nif}"></span></h2>
-                <h2>Stat : <span th:text="${entreprise.stat}"></span></h2>
-            </div>
-            <div class="inform2-entreprise" >
-                <h2>Adresse de l'entreprise : <span th:text="${entreprise.adresse}"></span></h2>
-                <h2>Email : <span th:text="${entreprise.emailContact}"></span></h2>
-                <h2>Téléphone(s) :<span th:text="${entreprise.telephones}"></span></h2>
+            <div class="entr_info">
+                <div class="inform1-entreprise">
+                    <h2>Nom de l'entreprise : <span th:text="${entreprise.nom}"></span></h2>
+                    <h2>Nif : <span th:text="${entreprise.nif}"></span></h2>
+                    <h2>Stat : <span th:text="${entreprise.stat}"></span></h2>
+                </div>
+                <div class="inform2-entreprise" >
+                    <h2>Adresse de l'entreprise : <span th:text="${entreprise.adresse}"></span></h2>
+                    <h2>Email : <span th:text="${entreprise.emailContact}"></span></h2>
+                    <h2>Téléphone(s) :<span th:text="${entreprise.telephones}"></span></h2>
+                </div>
             </div>
         </div>
     </div>
